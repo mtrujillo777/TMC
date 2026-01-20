@@ -98,22 +98,14 @@ button {
   <h2>🔄 Transactional Communication: Drag & Drop</h2>
 
   <div class="instructions">
-    <strong>Directions:</strong> Read the communication transaction below. Then drag each label to the description it best represents. Remember: in transactional communication, participants are sending and receiving messages simultaneously.
+    <strong>Directions:</strong> Read the communication transaction below. Then drag each label to the description it best represents. Remember: participants are sending and receiving messages simultaneously.
   </div>
 
   <!-- SCENARIO -->
-  <div class="scenario">
-    During a busy lunch shift at a restaurant, a shift lead speaks with a server about a recent customer complaint. 
-    The shift lead explains that a customer felt ignored while waiting for service and emphasizes the importance of checking in, even during peak hours. 
-    As this is happening, the server listens while mentally replaying the moment and feeling anxious about falling behind on tables. 
-    The server responds by acknowledging the concern and explaining that several large parties arrived at the same time, making it difficult to prioritize. 
-    While speaking, the server nods and lowers their voice, signaling understanding. 
-    Throughout the interaction, kitchen equipment is clanging, customers are talking loudly nearby, and the server briefly misunderstands the phrase “table rotation,” thinking it refers to seating rather than task assignment. 
-    Both individuals are under time pressure, aware that customers are waiting, and influenced by the professional expectations of a workplace environment.
-  </div>
+  <div class="scenario" id="scenarioText"></div>
 
   <!-- DRAG ITEMS -->
-  <div class="drag-bank">
+  <div class="drag-bank" id="dragBank">
     <div class="drag-item" draggable="true" id="senderreceiver">Simultaneous Sender & Receiver</div>
     <div class="drag-item" draggable="true" id="message">Message</div>
     <div class="drag-item" draggable="true" id="feedback">Feedback</div>
@@ -131,27 +123,27 @@ button {
     </div>
 
     <div class="drop-zone" data-answer="message">
-      <strong>The spoken explanations about the customer complaint and workload:</strong>
+      <strong>The spoken explanations and information exchanged:</strong>
     </div>
 
     <div class="drop-zone" data-answer="feedback">
-      <strong>Nodding, tone changes, and verbal acknowledgment:</strong>
+      <strong>Nonverbal and verbal responses during the interaction:</strong>
     </div>
 
     <div class="drop-zone" data-answer="noise-external">
-      <strong>Kitchen sounds and nearby conversations:</strong>
+      <strong>Environmental distractions:</strong>
     </div>
 
     <div class="drop-zone" data-answer="noise-internal">
-      <strong>Anxiety, stress, and mental distractions:</strong>
+      <strong>Thoughts, emotions, or mental interference:</strong>
     </div>
 
     <div class="drop-zone" data-answer="noise-semantic">
-      <strong>Misunderstanding the meaning of “table rotation”:</strong>
+      <strong>Misunderstanding the meaning of a word or phrase:</strong>
     </div>
 
     <div class="drop-zone" data-answer="context">
-      <strong>Workplace setting, time pressure, and professional expectations:</strong>
+      <strong>The situation, setting, and expectations influencing communication:</strong>
     </div>
 
   </div>
@@ -162,6 +154,45 @@ button {
 </div>
 
 <script>
+/* ---------------- SCENARIOS ---------------- */
+const scenarios = [
+  `During a busy lunch shift at a restaurant, a shift lead speaks with a server about a recent customer complaint.
+  The shift lead explains that a customer felt ignored while waiting for service and emphasizes the importance of checking in during peak hours.
+  As this happens, the server listens while feeling anxious about being behind on multiple tables.
+  The server responds by acknowledging the concern and explaining that several large parties arrived at once.
+  The server nods and lowers their voice to show understanding.
+  Kitchen equipment is clanging, customers are talking nearby, and the server briefly misunderstands the phrase “table rotation.”
+  Both individuals feel pressure due to time constraints and workplace expectations.`,
+
+  `A group project meeting takes place shortly before a class presentation is due.
+  One student explains that the slides need revision, while another student listens while worrying about an upcoming exam.
+  As they talk, both students interrupt and adjust their tone in response to each other’s reactions.
+  One student nods while typing notes on a laptop.
+  Nearby conversations and hallway noise make it difficult to focus.
+  When one student mentions “cutting content,” the other interprets it as removing ideas entirely rather than shortening them.
+  The academic setting, deadline pressure, and group roles influence how the conversation unfolds.`,
+
+  `During a team meeting at work, a supervisor discusses a change in scheduling with an employee.
+  The supervisor explains the new expectations while watching the employee’s facial expressions.
+  The employee listens but feels frustrated due to personal obligations outside of work.
+  The employee responds by asking questions and adjusting their tone.
+  Phones vibrate, coworkers talk nearby, and office equipment hums in the background.
+  The phrase “flexible availability” causes confusion because each person interprets it differently.
+  Company culture, job roles, and time constraints shape the interaction.`
+];
+
+/* ---------------- LOAD RANDOM SCENARIO ---------------- */
+document.getElementById("scenarioText").textContent =
+  scenarios[Math.floor(Math.random() * scenarios.length)];
+
+/* ---------------- RANDOMIZE DRAG ITEMS ---------------- */
+const dragBank = document.getElementById("dragBank");
+const items = Array.from(dragBank.children);
+
+items.sort(() => Math.random() - 0.5);
+items.forEach(item => dragBank.appendChild(item));
+
+/* ---------------- DRAG & DROP ---------------- */
 let draggedItem = null;
 
 document.querySelectorAll('.drag-item').forEach(item => {
@@ -177,6 +208,7 @@ document.querySelectorAll('.drop-zone').forEach(zone => {
   });
 });
 
+/* ---------------- CHECK ANSWERS ---------------- */
 function checkAnswers() {
   let score = 0;
 
@@ -194,7 +226,8 @@ function checkAnswers() {
     }
   });
 
-  document.getElementById("result").textContent = `Score: ${score}/7`;
+  document.getElementById("result").textContent =
+    `Score: ${score}/7`;
 }
 </script>
 
