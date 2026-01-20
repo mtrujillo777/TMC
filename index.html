@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Transactional Communication Game</title>
+<title>Transactional Communication Drag & Drop</title>
 
 <style>
 body {
   font-family: Arial, sans-serif;
-  background: #f3f6fa;
+  background: #f4f6fa;
   padding: 20px;
 }
 
@@ -15,7 +15,7 @@ body {
   max-width: 1000px;
   margin: auto;
   background: #ffffff;
-  padding: 25px;
+  padding: 20px;
   border-radius: 10px;
 }
 
@@ -23,60 +23,67 @@ h2 {
   text-align: center;
 }
 
+.instructions {
+  margin-bottom: 15px;
+}
+
+/* IMAGE AREA */
 .scene {
-  background: #eef2f7;
-  padding: 20px;
-  border-radius: 8px;
+  display: flex;
+  justify-content: center;
   margin-bottom: 25px;
 }
 
-.character {
-  margin-bottom: 20px;
+/* DRAG ITEMS */
+.drag-bank {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  justify-content: center;
 }
 
-.speech {
-  background: #ffffff;
-  padding: 12px;
-  border-left: 5px solid #4a6fa5;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
-.nonverbal {
-  font-style: italic;
-  color: #555;
-  margin-bottom: 10px;
-}
-
-.context {
-  background: #dde5ef;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 15px;
-  font-size: 0.95em;
-}
-
-.question {
-  margin-bottom: 18px;
-}
-
-label {
+.drag-item {
+  padding: 10px 14px;
+  background: #4a6fa5;
+  color: white;
+  border-radius: 6px;
+  cursor: grab;
   font-weight: bold;
+}
+
+/* DROP ZONES */
+.drop-zones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.drop-zone {
+  border: 2px dashed #999;
+  border-radius: 8px;
+  padding: 12px;
+  min-height: 60px;
+  background: #f9f9f9;
+}
+
+.drop-zone strong {
   display: block;
   margin-bottom: 5px;
 }
 
-select {
-  width: 100%;
-  padding: 6px;
-  font-size: 15px;
+.correct {
+  border-color: green;
+}
+
+.incorrect {
+  border-color: red;
 }
 
 button {
+  margin-top: 20px;
   padding: 10px 18px;
   font-size: 16px;
-  margin-right: 10px;
-  cursor: pointer;
 }
 
 #result {
@@ -84,125 +91,128 @@ button {
   font-size: 18px;
   font-weight: bold;
 }
-.correct { color: green; }
-.incorrect { color: red; }
 </style>
 </head>
 
 <body>
 
 <div class="container">
-  <h2>🔄 Transactional Communication: Label the Interaction</h2>
+  <h2>🔄 Transactional Communication: Drag & Drop</h2>
 
-  <p><strong>Directions:</strong> Review the interaction below. For each part of the communication event, select the correct transactional communication component.</p>
+  <div class="instructions">
+    <strong>Directions:</strong> Examine the interaction below. Drag each communication component to the correct description. Each person is a sender and receiver simultaneously.
+  </div>
 
-  <!-- SCENE -->
+  <!-- IMAGE SCENE (SVG) -->
   <div class="scene">
+    <svg width="700" height="300" viewBox="0 0 700 300" role="img" aria-label="Two coworkers speaking in a busy restaurant">
+      <!-- Background -->
+      <rect width="700" height="300" fill="#e9eef4"/>
 
-    <div class="character">
-      <h3>Maria (Shift Lead)</h3>
-      <div class="speech">
-        “I’m concerned because the customer felt ignored during the lunch rush.”
-      </div>
-      <div class="nonverbal">
-        (Leaning forward, steady eye contact, serious tone)
-      </div>
+      <!-- Person 1 -->
+      <circle cx="180" cy="100" r="35" fill="#f2c9ac"/>
+      <rect x="150" y="135" width="60" height="90" rx="10" fill="#4a6fa5"/>
+      <text x="180" y="250" text-anchor="middle" font-size="14">Maria</text>
+
+      <!-- Speech bubble 1 -->
+      <rect x="40" y="30" width="220" height="60" rx="10" fill="#ffffff"/>
+      <text x="50" y="55" font-size="13">
+        Concerned about customer service
+      </text>
+
+      <!-- Person 2 -->
+      <circle cx="520" cy="100" r="35" fill="#d9b38c"/>
+      <rect x="490" y="135" width="60" height="90" rx="10" fill="#7a9e7e"/>
+      <text x="520" y="250" text-anchor="middle" font-size="14">Devon</text>
+
+      <!-- Speech bubble 2 -->
+      <rect x="420" y="30" width="240" height="60" rx="10" fill="#ffffff"/>
+      <text x="430" y="55" font-size="13">
+        Acknowledges stress and responds
+      </text>
+
+      <!-- Environment -->
+      <text x="350" y="285" text-anchor="middle" font-size="12" fill="#555">
+        Busy restaurant • Background noise • Time pressure
+      </text>
+    </svg>
+  </div>
+
+  <!-- DRAG ITEMS -->
+  <div class="drag-bank">
+    <div class="drag-item" draggable="true" id="encoding">Encoding</div>
+    <div class="drag-item" draggable="true" id="feedback">Feedback</div>
+    <div class="drag-item" draggable="true" id="noise">Noise</div>
+    <div class="drag-item" draggable="true" id="context">Context</div>
+    <div class="drag-item" draggable="true" id="simultaneous">Simultaneous Sender & Receiver</div>
+  </div>
+
+  <!-- DROP ZONES -->
+  <div class="drop-zones">
+    <div class="drop-zone" data-answer="simultaneous">
+      <strong>Both Maria and Devon are acting as:</strong>
     </div>
 
-    <div class="character">
-      <h3>Devon (Server)</h3>
-      <div class="speech">
-        “I understand. I was overwhelmed, but I should’ve communicated better.”
-      </div>
-      <div class="nonverbal">
-        (Nods head, softer voice, relaxed shoulders)
-      </div>
+    <div class="drop-zone" data-answer="encoding">
+      <strong>The spoken messages in the speech bubbles represent:</strong>
     </div>
 
-    <div class="context">
-      <strong>Context:</strong> Busy restaurant during lunch rush. Background noise includes kitchen equipment, customers talking, and music. Both participants feel stress due to time pressure.
+    <div class="drop-zone" data-answer="feedback">
+      <strong>Nods, tone changes, and immediate responses represent:</strong>
     </div>
 
+    <div class="drop-zone" data-answer="noise">
+      <strong>Restaurant sounds and distractions represent:</strong>
+    </div>
+
+    <div class="drop-zone" data-answer="context">
+      <strong>The workplace setting and emotional stress represent:</strong>
+    </div>
   </div>
 
-  <!-- QUESTIONS -->
-  <div class="question">
-    <label>Maria and Devon are acting as:</label>
-    <select id="q1">
-      <option value="">Select one</option>
-      <option value="simultaneous">Simultaneous Sender & Receiver</option>
-      <option value="sender">Sender only</option>
-      <option value="receiver">Receiver only</option>
-    </select>
-  </div>
-
-  <div class="question">
-    <label>Maria’s spoken words are an example of:</label>
-    <select id="q2">
-      <option value="">Select one</option>
-      <option value="encoding">Encoding</option>
-      <option value="noise">Noise</option>
-      <option value="feedback">Feedback</option>
-    </select>
-  </div>
-
-  <div class="question">
-    <label>Devon nodding and adjusting tone demonstrates:</label>
-    <select id="q3">
-      <option value="">Select one</option>
-      <option value="feedback">Feedback</option>
-      <option value="channel">Channel</option>
-      <option value="context">Context</option>
-    </select>
-  </div>
-
-  <div class="question">
-    <label>Kitchen sounds and customer chatter represent:</label>
-    <select id="q4">
-      <option value="">Select one</option>
-      <option value="noise">Noise</option>
-      <option value="encoding">Encoding</option>
-      <option value="decoding">Decoding</option>
-    </select>
-  </div>
-
-  <div class="question">
-    <label>The stress and time pressure affecting both speakers represent:</label>
-    <select id="q5">
-      <option value="">Select one</option>
-      <option value="context">Psychological Context</option>
-      <option value="channel">Channel</option>
-      <option value="feedback">Feedback</option>
-    </select>
-  </div>
-
-  <!-- BUTTONS -->
-  <button onclick="checkAnswers()">Submit</button>
-  <button onclick="location.reload()">Reset</button>
+  <button onclick="checkAnswers()">Check Answers</button>
 
   <div id="result"></div>
 </div>
 
 <script>
+let draggedItem = null;
+
+document.querySelectorAll('.drag-item').forEach(item => {
+  item.addEventListener('dragstart', () => {
+    draggedItem = item;
+  });
+});
+
+document.querySelectorAll('.drop-zone').forEach(zone => {
+  zone.addEventListener('dragover', e => e.preventDefault());
+
+  zone.addEventListener('drop', () => {
+    if (!zone.querySelector('.drag-item')) {
+      zone.appendChild(draggedItem);
+    }
+  });
+});
+
 function checkAnswers() {
   let score = 0;
 
-  if (q1.value === "simultaneous") score++;
-  if (q2.value === "encoding") score++;
-  if (q3.value === "feedback") score++;
-  if (q4.value === "noise") score++;
-  if (q5.value === "context") score++;
+  document.querySelectorAll('.drop-zone').forEach(zone => {
+    const answer = zone.getAttribute('data-answer');
+    const item = zone.querySelector('.drag-item');
 
-  const result = document.getElementById("result");
-  result.textContent = `Score: ${score}/5`;
+    if (item && item.id === answer) {
+      zone.classList.add('correct');
+      zone.classList.remove('incorrect');
+      score++;
+    } else {
+      zone.classList.add('incorrect');
+      zone.classList.remove('correct');
+    }
+  });
 
-  if (score === 5) {
-    result.className = "correct";
-    result.textContent += " — Excellent understanding of transactional communication!";
-  } else {
-    result.className = "incorrect";
-    result.textContent += " — Review the transactional model and try again.";
-  }
+  document.getElementById('result').textContent =
+    `Score: ${score}/5`;
 }
 </script>
 
