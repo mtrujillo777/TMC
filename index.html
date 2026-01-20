@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Transactional Communication Game</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f6ff;
+    text-align:center;
+    padding:20px;
+}
+
+h1{
+    color:#2c3e50;
+}
+
+#scene{
+    position:relative;
+    margin:20px auto;
+    width:800px;
+    height:400px;
+    background:#dfefff;
+    border:3px solid #2c3e50;
+    border-radius:12px;
+}
+
+/* People */
+.person{
+    position:absolute;
+    bottom:40px;
+    width:120px;
+    text-align:center;
+}
+
+#person1{ left:80px; }
+#person2{ right:80px; }
+
+.head{
+    width:70px;
+    height:70px;
+    background:#f1c27d;
+    border-radius:50%;
+    margin:0 auto;
+}
+.body{
+    width:80px;
+    height:90px;
+    background:#3498db;
+    margin:5px auto;
+    border-radius:10px;
+}
+
+/* Speech bubbles */
+.bubble{
+    position:absolute;
+    width:200px;
+    height:70px;
+    background:white;
+    border:2px solid #333;
+    border-radius:10px;
+    padding:5px;
+    font-size:14px;
+}
+
+#bubble1{ left:200px; top:60px; }
+#bubble2{ right:200px; top:150px; }
+
+/* Labels */
+.label{
+    position:absolute;
+    background:#fff;
+    padding:5px;
+    border-radius:6px;
+    font-size:12px;
+    border:1px solid #aaa;
+}
+
+/* Dropdowns */
+select{
+    font-size:12px;
+    margin-top:3px;
+}
+
+#score{
+    font-size:18px;
+    margin-top:15px;
+}
+
+.correct{ background:#c8f7c5 !important; }
+.incorrect{ background:#f7c5c5 !important; }
+
+button{
+    margin-top:10px;
+    padding:10px 20px;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Transactional Model of Communication Game</h1>
+<p>Label each part of the communication transaction correctly.</p>
+
+<div id="scene">
+
+    <!-- People -->
+    <div class="person" id="person1">
+        <div class="head"></div>
+        <div class="body"></div>
+        <strong>Alex</strong>
+    </div>
+
+    <div class="person" id="person2">
+        <div class="head"></div>
+        <div class="body"></div>
+        <strong>Jordan</strong>
+    </div>
+
+    <!-- Speech bubbles -->
+    <div class="bubble" id="bubble1">"Can you help me with my speech outline?"</div>
+    <div class="bubble" id="bubble2">"Sure! Let’s work on it together."</div>
+
+    <!-- Transactional Labels -->
+    <div class="label" style="left:90px; top:10px;">
+        <select data-answer="Sender">
+            <option value="">Select Label</option>
+            <option>Sender</option><option>Receiver</option><option>Message</option>
+            <option>Channel</option><option>Feedback</option><option>Noise</option>
+            <option>Context</option><option>Shared Meaning</option>
+        </select>
+        <div>Alex</div>
+    </div>
+
+    <div class="label" style="right:90px; top:10px;">
+        <select data-answer="Receiver">
+            <option value="">Select Label</option>
+            <option>Sender</option><option>Receiver</option><option>Message</option>
+            <option>Channel</option><option>Feedback</option><option>Noise</option>
+            <option>Context</option><option>Shared Meaning</option>
+        </select>
+        <div>Jordan</div>
+    </div>
+
+    <div class="label" style="left:260px; top:30px;">
+        <select data-answer="Message">
+            <option value="">Select Label</option>
+            <option>Sender</option><option>Receiver</option><option>Message</option>
+            <option>Channel</option><option>Feedback</option><option>Noise</option>
+            <option>Context</option><option>Shared Meaning</option>
+        </select>
+        <div>Speech Bubble</div>
+    </div>
+
+    <div class="label" style="left:360px; top:220px;">
+        <select data-answer="Channel">
+            <option value="">Select Label</option>
+            <option>Sender</option><option>Receiver</option><option>Message</option>
+            <option>Channel</option><option>Feedback</option><option>Noise</option>
+            <option>Context</option><option>Shared Meaning</option>
+        </select>
+        <div>Spoken Words</div>
+    </div>
+
+    <div class="label" style="right:260px; top:200px;">
+        <select data-answer="Feedback">
+            <option value="">Select Label</option>
+            <option>Sender</option><option>Receiver</option><option>Message</option>
+            <option>Channel</option><option>Feedback</option><option>Noise</option>
+            <option>Context</option><option>Shared Meaning</option>
+        </select>
+        <div>Response Bubble</div>
+    </div>
+
+    <div class="label" style="left:20px; bottom:10px;">
+        <select data-answer="Context">
+            <option value="">Select Label</option>
+            <option>Sender</option><option>Receiver</option><option>Message</option>
+            <option>Channel</option><option>Feedback</option><option>Noise</option>
+            <option>Context</option><option>Shared Meaning</option>
+        </select>
+        <div>Classroom Setting</div>
+    </div>
+
+    <div class="label" style="right:20px; bottom:10px;">
+        <select data-answer="Shared Meaning">
+            <option value="">Select Label</option>
+            <option>Sender</option><option>Receiver</option><option>Message</option>
+            <option>Channel</option><option>Feedback</option><option>Noise</option>
+            <option>Context</option><option>Shared Meaning</option>
+        </select>
+        <div>Mutual Understanding</div>
+    </div>
+
+    <div class="label" style="left:360px; top:350px;">
+        <select data-answer="Noise">
+            <option value="">Select Label</option>
+            <option>Sender</option><option>Receiver</option><option>Message</option>
+            <option>Channel</option><option>Feedback</option><option>Noise</option>
+            <option>Context</option><option>Shared Meaning</option>
+        </select>
+        <div>Background Sounds</div>
+    </div>
+
+</div>
+
+<div id="score">Score: 0 / 8</div>
+
+<button onclick="checkAnswers()">Check Answers</button>
+<button onclick="resetGame()">Reset</button>
+
+<script>
+function checkAnswers(){
+    let selects = document.querySelectorAll("select");
+    let score = 0;
+
+    selects.forEach(sel=>{
+        if(sel.value === sel.dataset.answer){
+            sel.parentElement.classList.add("correct");
+            sel.parentElement.classList.remove("incorrect");
+            score++;
+        }else{
+            sel.parentElement.classList.add("incorrect");
+            sel.parentElement.classList.remove("correct");
+        }
+    });
+
+    document.getElementById("score").innerText = "Score: " + score + " / 8";
+}
+
+function resetGame(){
+    let selects = document.querySelectorAll("select");
+    selects.forEach(sel=>{
+        sel.value = "";
+        sel.parentElement.classList.remove("correct","incorrect");
+    });
+    document.getElementById("score").innerText = "Score: 0 / 8";
+}
+</script>
+
+</body>
+</html>
