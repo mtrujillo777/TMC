@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1050px;
   margin: auto;
   background: #ffffff;
   padding: 20px;
@@ -31,7 +31,7 @@ h2 {
 .scene {
   display: flex;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 /* DRAG ITEMS */
@@ -55,7 +55,7 @@ h2 {
 /* DROP ZONES */
 .drop-zones {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 15px;
 }
 
@@ -63,7 +63,7 @@ h2 {
   border: 2px dashed #999;
   border-radius: 8px;
   padding: 12px;
-  min-height: 60px;
+  min-height: 65px;
   background: #f9f9f9;
 }
 
@@ -72,13 +72,8 @@ h2 {
   margin-bottom: 5px;
 }
 
-.correct {
-  border-color: green;
-}
-
-.incorrect {
-  border-color: red;
-}
+.correct { border-color: green; }
+.incorrect { border-color: red; }
 
 button {
   margin-top: 20px;
@@ -100,57 +95,95 @@ button {
   <h2>🔄 Transactional Communication: Drag & Drop</h2>
 
   <div class="instructions">
-    <strong>Directions:</strong> Examine the interaction below. Drag each communication component to the correct description. Each person is a sender and receiver simultaneously.
+    <strong>Directions:</strong> Examine the interaction below. Drag each communication component to the correct description. Remember: in transactional communication, participants are sending and receiving messages at the same time.
   </div>
 
-  <!-- IMAGE SCENE (SVG) -->
+  <!-- DETAILED IMAGE SCENE -->
   <div class="scene">
-    <svg width="700" height="300" viewBox="0 0 700 300" role="img" aria-label="Two coworkers speaking in a busy restaurant">
+    <svg width="900" height="360" viewBox="0 0 900 360" role="img" aria-label="Server and shift lead speaking during a busy restaurant shift">
+      
       <!-- Background -->
-      <rect width="700" height="300" fill="#e9eef4"/>
+      <rect width="900" height="360" fill="#e9eef4"/>
+      <rect y="260" width="900" height="100" fill="#d0d6dc"/>
 
-      <!-- Person 1 -->
-      <circle cx="180" cy="100" r="35" fill="#f2c9ac"/>
-      <rect x="150" y="135" width="60" height="90" rx="10" fill="#4a6fa5"/>
-      <text x="180" y="250" text-anchor="middle" font-size="14">Maria</text>
+      <!-- Maria (Shift Lead) -->
+      <!-- Head -->
+      <circle cx="240" cy="110" r="38" fill="#f2c9ac"/>
+      <!-- Eyes -->
+      <circle cx="230" cy="105" r="4" fill="#333"/>
+      <circle cx="250" cy="105" r="4" fill="#333"/>
+      <!-- Eyebrows -->
+      <line x1="222" y1="96" x2="236" y2="94" stroke="#333" stroke-width="2"/>
+      <line x1="244" y1="94" x2="258" y2="96" stroke="#333" stroke-width="2"/>
+      <!-- Mouth (serious) -->
+      <line x1="232" y1="125" x2="252" y2="125" stroke="#333" stroke-width="2"/>
 
-      <!-- Speech bubble 1 -->
-      <rect x="40" y="30" width="220" height="60" rx="10" fill="#ffffff"/>
-      <text x="50" y="55" font-size="13">
-        Concerned about customer service
+      <!-- Body -->
+      <rect x="205" y="148" width="70" height="110" rx="12" fill="#4a6fa5"/>
+      <!-- Clipboard -->
+      <rect x="280" y="175" width="30" height="40" rx="4" fill="#ffffff" stroke="#999"/>
+
+      <!-- Label -->
+      <text x="240" y="300" text-anchor="middle" font-size="14">Maria — Shift Lead</text>
+
+      <!-- Speech Bubble Maria -->
+      <rect x="70" y="30" width="300" height="70" rx="12" fill="#ffffff"/>
+      <text x="85" y="60" font-size="14">
+        I’m concerned the customer felt ignored
+      </text>
+      <text x="85" y="78" font-size="14">
+        during the lunch rush.
       </text>
 
-      <!-- Person 2 -->
-      <circle cx="520" cy="100" r="35" fill="#d9b38c"/>
-      <rect x="490" y="135" width="60" height="90" rx="10" fill="#7a9e7e"/>
-      <text x="520" y="250" text-anchor="middle" font-size="14">Devon</text>
+      <!-- Devon (Server) -->
+      <!-- Head -->
+      <circle cx="650" cy="110" r="38" fill="#d9b38c"/>
+      <!-- Eyes -->
+      <circle cx="640" cy="105" r="4" fill="#333"/>
+      <circle cx="660" cy="105" r="4" fill="#333"/>
+      <!-- Eyebrows (raised) -->
+      <line x1="632" y1="94" x2="646" y2="96" stroke="#333" stroke-width="2"/>
+      <line x1="654" y1="96" x2="668" y2="94" stroke="#333" stroke-width="2"/>
+      <!-- Mouth (concerned) -->
+      <path d="M640 128 Q650 122 660 128" stroke="#333" stroke-width="2" fill="none"/>
 
-      <!-- Speech bubble 2 -->
-      <rect x="420" y="30" width="240" height="60" rx="10" fill="#ffffff"/>
-      <text x="430" y="55" font-size="13">
-        Acknowledges stress and responds
+      <!-- Body -->
+      <rect x="615" y="148" width="70" height="110" rx="12" fill="#7a9e7e"/>
+      <!-- Tray -->
+      <ellipse cx="690" cy="185" rx="30" ry="8" fill="#999"/>
+
+      <!-- Label -->
+      <text x="650" y="300" text-anchor="middle" font-size="14">Devon — Server</text>
+
+      <!-- Speech Bubble Devon -->
+      <rect x="520" y="30" width="320" height="70" rx="12" fill="#ffffff"/>
+      <text x="535" y="60" font-size="14">
+        I get that. I was overwhelmed,
+      </text>
+      <text x="535" y="78" font-size="14">
+        but I should’ve communicated better.
       </text>
 
-      <!-- Environment -->
-      <text x="350" y="285" text-anchor="middle" font-size="12" fill="#555">
-        Busy restaurant • Background noise • Time pressure
+      <!-- Environment Text -->
+      <text x="450" y="345" text-anchor="middle" font-size="12" fill="#555">
+        Busy restaurant • Kitchen noise • Customers talking • Time pressure
       </text>
     </svg>
   </div>
 
   <!-- DRAG ITEMS -->
   <div class="drag-bank">
+    <div class="drag-item" draggable="true" id="simultaneous">Simultaneous Sender & Receiver</div>
     <div class="drag-item" draggable="true" id="encoding">Encoding</div>
     <div class="drag-item" draggable="true" id="feedback">Feedback</div>
     <div class="drag-item" draggable="true" id="noise">Noise</div>
     <div class="drag-item" draggable="true" id="context">Context</div>
-    <div class="drag-item" draggable="true" id="simultaneous">Simultaneous Sender & Receiver</div>
   </div>
 
   <!-- DROP ZONES -->
   <div class="drop-zones">
     <div class="drop-zone" data-answer="simultaneous">
-      <strong>Both Maria and Devon are acting as:</strong>
+      <strong>Maria and Devon are acting as:</strong>
     </div>
 
     <div class="drop-zone" data-answer="encoding">
@@ -158,11 +191,11 @@ button {
     </div>
 
     <div class="drop-zone" data-answer="feedback">
-      <strong>Nods, tone changes, and immediate responses represent:</strong>
+      <strong>Facial expressions, posture, and immediate responses represent:</strong>
     </div>
 
     <div class="drop-zone" data-answer="noise">
-      <strong>Restaurant sounds and distractions represent:</strong>
+      <strong>Kitchen sounds, chatter, and distractions represent:</strong>
     </div>
 
     <div class="drop-zone" data-answer="context">
@@ -179,14 +212,11 @@ button {
 let draggedItem = null;
 
 document.querySelectorAll('.drag-item').forEach(item => {
-  item.addEventListener('dragstart', () => {
-    draggedItem = item;
-  });
+  item.addEventListener('dragstart', () => draggedItem = item);
 });
 
 document.querySelectorAll('.drop-zone').forEach(zone => {
   zone.addEventListener('dragover', e => e.preventDefault());
-
   zone.addEventListener('drop', () => {
     if (!zone.querySelector('.drag-item')) {
       zone.appendChild(draggedItem);
@@ -198,10 +228,10 @@ function checkAnswers() {
   let score = 0;
 
   document.querySelectorAll('.drop-zone').forEach(zone => {
-    const answer = zone.getAttribute('data-answer');
+    const correct = zone.dataset.answer;
     const item = zone.querySelector('.drag-item');
 
-    if (item && item.id === answer) {
+    if (item && item.id === correct) {
       zone.classList.add('correct');
       zone.classList.remove('incorrect');
       score++;
@@ -211,8 +241,7 @@ function checkAnswers() {
     }
   });
 
-  document.getElementById('result').textContent =
-    `Score: ${score}/5`;
+  document.getElementById('result').textContent = `Score: ${score}/5`;
 }
 </script>
 
