@@ -3,239 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <title>Transactional Communication Game</title>
+
 <style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f2f6ff;
-    text-align:center;
-    padding:20px;
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f6fa;
+  padding: 20px;
 }
 
-h1{
-    color:#2c3e50;
+.container {
+  max-width: 1000px;
+  margin: auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
 }
 
-#scene{
-    position:relative;
-    margin:20px auto;
-    width:800px;
-    height:400px;
-    background:#dfefff;
-    border:3px solid #2c3e50;
-    border-radius:12px;
+h2 {
+  text-align: center;
 }
 
-/* People */
-.person{
-    position:absolute;
-    bottom:40px;
-    width:120px;
-    text-align:center;
+.scene {
+  background: #eef2f7;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
 }
 
-#person1{ left:80px; }
-#person2{ right:80px; }
-
-.head{
-    width:70px;
-    height:70px;
-    background:#f1c27d;
-    border-radius:50%;
-    margin:0 auto;
-}
-.body{
-    width:80px;
-    height:90px;
-    background:#3498db;
-    margin:5px auto;
-    border-radius:10px;
+.character {
+  margin-bottom: 20px;
 }
 
-/* Speech bubbles */
-.bubble{
-    position:absolute;
-    width:200px;
-    height:70px;
-    background:white;
-    border:2px solid #333;
-    border-radius:10px;
-    padding:5px;
-    font-size:14px;
+.speech {
+  background: #ffffff;
+  padding: 12px;
+  border-left: 5px solid #4a6fa5;
+  border-radius: 5px;
+  margin-bottom: 5px;
 }
 
-#bubble1{ left:200px; top:60px; }
-#bubble2{ right:200px; top:150px; }
-
-/* Labels */
-.label{
-    position:absolute;
-    background:#fff;
-    padding:5px;
-    border-radius:6px;
-    font-size:12px;
-    border:1px solid #aaa;
+.nonverbal {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 10px;
 }
 
-/* Dropdowns */
-select{
-    font-size:12px;
-    margin-top:3px;
+.context {
+  background: #dde5ef;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 15px;
+  font-size: 0.95em;
 }
 
-#score{
-    font-size:18px;
-    margin-top:15px;
+.question {
+  margin-bottom: 18px;
 }
 
-.correct{ background:#c8f7c5 !important; }
-.incorrect{ background:#f7c5c5 !important; }
-
-button{
-    margin-top:10px;
-    padding:10px 20px;
-    font-size:14px;
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }
+
+select {
+  width: 100%;
+  padding: 6px;
+  font-size: 15px;
+}
+
+button {
+  padding: 10px 18px;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.correct { color: green; }
+.incorrect { color: red; }
 </style>
 </head>
 
 <body>
 
-<h1>Transactional Model of Communication Game</h1>
-<p>Label each part of the communication transaction correctly.</p>
+<div class="container">
+  <h2>🔄 Transactional Communication: Label the Interaction</h2>
 
-<div id="scene">
+  <p><strong>Directions:</strong> Review the interaction below. For each part of the communication event, select the correct transactional communication component.</p>
 
-    <!-- People -->
-    <div class="person" id="person1">
-        <div class="head"></div>
-        <div class="body"></div>
-        <strong>Alex</strong>
+  <!-- SCENE -->
+  <div class="scene">
+
+    <div class="character">
+      <h3>Maria (Shift Lead)</h3>
+      <div class="speech">
+        “I’m concerned because the customer felt ignored during the lunch rush.”
+      </div>
+      <div class="nonverbal">
+        (Leaning forward, steady eye contact, serious tone)
+      </div>
     </div>
 
-    <div class="person" id="person2">
-        <div class="head"></div>
-        <div class="body"></div>
-        <strong>Jordan</strong>
+    <div class="character">
+      <h3>Devon (Server)</h3>
+      <div class="speech">
+        “I understand. I was overwhelmed, but I should’ve communicated better.”
+      </div>
+      <div class="nonverbal">
+        (Nods head, softer voice, relaxed shoulders)
+      </div>
     </div>
 
-    <!-- Speech bubbles -->
-    <div class="bubble" id="bubble1">"Can you help me with my speech outline?"</div>
-    <div class="bubble" id="bubble2">"Sure! Let’s work on it together."</div>
-
-    <!-- Transactional Labels -->
-    <div class="label" style="left:90px; top:10px;">
-        <select data-answer="Sender">
-            <option value="">Select Label</option>
-            <option>Sender</option><option>Receiver</option><option>Message</option>
-            <option>Channel</option><option>Feedback</option><option>Noise</option>
-            <option>Context</option><option>Shared Meaning</option>
-        </select>
-        <div>Alex</div>
+    <div class="context">
+      <strong>Context:</strong> Busy restaurant during lunch rush. Background noise includes kitchen equipment, customers talking, and music. Both participants feel stress due to time pressure.
     </div>
 
-    <div class="label" style="right:90px; top:10px;">
-        <select data-answer="Receiver">
-            <option value="">Select Label</option>
-            <option>Sender</option><option>Receiver</option><option>Message</option>
-            <option>Channel</option><option>Feedback</option><option>Noise</option>
-            <option>Context</option><option>Shared Meaning</option>
-        </select>
-        <div>Jordan</div>
-    </div>
+  </div>
 
-    <div class="label" style="left:260px; top:30px;">
-        <select data-answer="Message">
-            <option value="">Select Label</option>
-            <option>Sender</option><option>Receiver</option><option>Message</option>
-            <option>Channel</option><option>Feedback</option><option>Noise</option>
-            <option>Context</option><option>Shared Meaning</option>
-        </select>
-        <div>Speech Bubble</div>
-    </div>
+  <!-- QUESTIONS -->
+  <div class="question">
+    <label>Maria and Devon are acting as:</label>
+    <select id="q1">
+      <option value="">Select one</option>
+      <option value="simultaneous">Simultaneous Sender & Receiver</option>
+      <option value="sender">Sender only</option>
+      <option value="receiver">Receiver only</option>
+    </select>
+  </div>
 
-    <div class="label" style="left:360px; top:220px;">
-        <select data-answer="Channel">
-            <option value="">Select Label</option>
-            <option>Sender</option><option>Receiver</option><option>Message</option>
-            <option>Channel</option><option>Feedback</option><option>Noise</option>
-            <option>Context</option><option>Shared Meaning</option>
-        </select>
-        <div>Spoken Words</div>
-    </div>
+  <div class="question">
+    <label>Maria’s spoken words are an example of:</label>
+    <select id="q2">
+      <option value="">Select one</option>
+      <option value="encoding">Encoding</option>
+      <option value="noise">Noise</option>
+      <option value="feedback">Feedback</option>
+    </select>
+  </div>
 
-    <div class="label" style="right:260px; top:200px;">
-        <select data-answer="Feedback">
-            <option value="">Select Label</option>
-            <option>Sender</option><option>Receiver</option><option>Message</option>
-            <option>Channel</option><option>Feedback</option><option>Noise</option>
-            <option>Context</option><option>Shared Meaning</option>
-        </select>
-        <div>Response Bubble</div>
-    </div>
+  <div class="question">
+    <label>Devon nodding and adjusting tone demonstrates:</label>
+    <select id="q3">
+      <option value="">Select one</option>
+      <option value="feedback">Feedback</option>
+      <option value="channel">Channel</option>
+      <option value="context">Context</option>
+    </select>
+  </div>
 
-    <div class="label" style="left:20px; bottom:10px;">
-        <select data-answer="Context">
-            <option value="">Select Label</option>
-            <option>Sender</option><option>Receiver</option><option>Message</option>
-            <option>Channel</option><option>Feedback</option><option>Noise</option>
-            <option>Context</option><option>Shared Meaning</option>
-        </select>
-        <div>Classroom Setting</div>
-    </div>
+  <div class="question">
+    <label>Kitchen sounds and customer chatter represent:</label>
+    <select id="q4">
+      <option value="">Select one</option>
+      <option value="noise">Noise</option>
+      <option value="encoding">Encoding</option>
+      <option value="decoding">Decoding</option>
+    </select>
+  </div>
 
-    <div class="label" style="right:20px; bottom:10px;">
-        <select data-answer="Shared Meaning">
-            <option value="">Select Label</option>
-            <option>Sender</option><option>Receiver</option><option>Message</option>
-            <option>Channel</option><option>Feedback</option><option>Noise</option>
-            <option>Context</option><option>Shared Meaning</option>
-        </select>
-        <div>Mutual Understanding</div>
-    </div>
+  <div class="question">
+    <label>The stress and time pressure affecting both speakers represent:</label>
+    <select id="q5">
+      <option value="">Select one</option>
+      <option value="context">Psychological Context</option>
+      <option value="channel">Channel</option>
+      <option value="feedback">Feedback</option>
+    </select>
+  </div>
 
-    <div class="label" style="left:360px; top:350px;">
-        <select data-answer="Noise">
-            <option value="">Select Label</option>
-            <option>Sender</option><option>Receiver</option><option>Message</option>
-            <option>Channel</option><option>Feedback</option><option>Noise</option>
-            <option>Context</option><option>Shared Meaning</option>
-        </select>
-        <div>Background Sounds</div>
-    </div>
+  <!-- BUTTONS -->
+  <button onclick="checkAnswers()">Submit</button>
+  <button onclick="location.reload()">Reset</button>
 
+  <div id="result"></div>
 </div>
 
-<div id="score">Score: 0 / 8</div>
-
-<button onclick="checkAnswers()">Check Answers</button>
-<button onclick="resetGame()">Reset</button>
-
 <script>
-function checkAnswers(){
-    let selects = document.querySelectorAll("select");
-    let score = 0;
+function checkAnswers() {
+  let score = 0;
 
-    selects.forEach(sel=>{
-        if(sel.value === sel.dataset.answer){
-            sel.parentElement.classList.add("correct");
-            sel.parentElement.classList.remove("incorrect");
-            score++;
-        }else{
-            sel.parentElement.classList.add("incorrect");
-            sel.parentElement.classList.remove("correct");
-        }
-    });
+  if (q1.value === "simultaneous") score++;
+  if (q2.value === "encoding") score++;
+  if (q3.value === "feedback") score++;
+  if (q4.value === "noise") score++;
+  if (q5.value === "context") score++;
 
-    document.getElementById("score").innerText = "Score: " + score + " / 8";
-}
+  const result = document.getElementById("result");
+  result.textContent = `Score: ${score}/5`;
 
-function resetGame(){
-    let selects = document.querySelectorAll("select");
-    selects.forEach(sel=>{
-        sel.value = "";
-        sel.parentElement.classList.remove("correct","incorrect");
-    });
-    document.getElementById("score").innerText = "Score: 0 / 8";
+  if (score === 5) {
+    result.className = "correct";
+    result.textContent += " — Excellent understanding of transactional communication!";
+  } else {
+    result.className = "incorrect";
+    result.textContent += " — Review the transactional model and try again.";
+  }
 }
 </script>
 
