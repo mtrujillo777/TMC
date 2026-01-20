@@ -27,7 +27,6 @@ h2 {
   margin-bottom: 15px;
 }
 
-/* SCENARIO */
 .scenario {
   background: #eef2f7;
   padding: 20px;
@@ -52,7 +51,6 @@ h2 {
   border-radius: 6px;
   cursor: grab;
   font-weight: bold;
-  text-align: center;
 }
 
 /* DROP ZONES */
@@ -66,13 +64,19 @@ h2 {
   border: 2px dashed #999;
   border-radius: 8px;
   padding: 12px;
-  min-height: 70px;
+  min-height: 80px;
   background: #f9f9f9;
 }
 
 .drop-zone strong {
   display: block;
   margin-bottom: 6px;
+}
+
+.feedback {
+  margin-top: 6px;
+  font-size: 0.9em;
+  color: #444;
 }
 
 .correct { border-color: green; }
@@ -98,10 +102,9 @@ button {
   <h2>🔄 Transactional Communication: Drag & Drop</h2>
 
   <div class="instructions">
-    <strong>Directions:</strong> Read the communication transaction below. Then drag each label to the description it best represents. Remember: participants are sending and receiving messages simultaneously.
+    <strong>Directions:</strong> Read the communication transaction below. Drag each label to the description it best represents.
   </div>
 
-  <!-- SCENARIO -->
   <div class="scenario" id="scenarioText"></div>
 
   <!-- DRAG ITEMS -->
@@ -120,30 +123,37 @@ button {
 
     <div class="drop-zone" data-answer="senderreceiver">
       <strong>Both individuals communicating and reacting at the same time:</strong>
+      <div class="feedback"></div>
     </div>
 
     <div class="drop-zone" data-answer="message">
       <strong>The spoken explanations and information exchanged:</strong>
+      <div class="feedback"></div>
     </div>
 
     <div class="drop-zone" data-answer="feedback">
       <strong>Nonverbal and verbal responses during the interaction:</strong>
+      <div class="feedback"></div>
     </div>
 
     <div class="drop-zone" data-answer="noise-external">
       <strong>Environmental distractions:</strong>
+      <div class="feedback"></div>
     </div>
 
     <div class="drop-zone" data-answer="noise-internal">
       <strong>Thoughts, emotions, or mental interference:</strong>
+      <div class="feedback"></div>
     </div>
 
     <div class="drop-zone" data-answer="noise-semantic">
       <strong>Misunderstanding the meaning of a word or phrase:</strong>
+      <div class="feedback"></div>
     </div>
 
     <div class="drop-zone" data-answer="context">
       <strong>The situation, setting, and expectations influencing communication:</strong>
+      <div class="feedback"></div>
     </div>
 
   </div>
@@ -154,45 +164,27 @@ button {
 </div>
 
 <script>
-/* ---------------- SCENARIOS ---------------- */
+/* ---------- SCENARIOS ---------- */
 const scenarios = [
-  `During a busy lunch shift at a restaurant, a shift lead speaks with a server about a recent customer complaint.
-  The shift lead explains that a customer felt ignored while waiting for service and emphasizes the importance of checking in during peak hours.
-  As this happens, the server listens while feeling anxious about being behind on multiple tables.
-  The server responds by acknowledging the concern and explaining that several large parties arrived at once.
-  The server nods and lowers their voice to show understanding.
-  Kitchen equipment is clanging, customers are talking nearby, and the server briefly misunderstands the phrase “table rotation.”
-  Both individuals feel pressure due to time constraints and workplace expectations.`,
-
-  `A group project meeting takes place shortly before a class presentation is due.
-  One student explains that the slides need revision, while another student listens while worrying about an upcoming exam.
-  As they talk, both students interrupt and adjust their tone in response to each other’s reactions.
-  One student nods while typing notes on a laptop.
-  Nearby conversations and hallway noise make it difficult to focus.
-  When one student mentions “cutting content,” the other interprets it as removing ideas entirely rather than shortening them.
-  The academic setting, deadline pressure, and group roles influence how the conversation unfolds.`,
-
-  `During a team meeting at work, a supervisor discusses a change in scheduling with an employee.
-  The supervisor explains the new expectations while watching the employee’s facial expressions.
-  The employee listens but feels frustrated due to personal obligations outside of work.
-  The employee responds by asking questions and adjusting their tone.
-  Phones vibrate, coworkers talk nearby, and office equipment hums in the background.
-  The phrase “flexible availability” causes confusion because each person interprets it differently.
-  Company culture, job roles, and time constraints shape the interaction.`
+`During a busy lunch shift at a restaurant, a shift lead speaks with a server about a recent customer complaint.
+The shift lead explains that a customer felt ignored while waiting for service.
+The server listens while feeling anxious about being behind on tables.
+The server nods and responds by explaining the workload.
+Kitchen noise and nearby conversations continue.
+The server briefly misunderstands the phrase “table rotation.”
+Both individuals feel pressure due to time and workplace expectations.`
 ];
 
-/* ---------------- LOAD RANDOM SCENARIO ---------------- */
 document.getElementById("scenarioText").textContent =
   scenarios[Math.floor(Math.random() * scenarios.length)];
 
-/* ---------------- RANDOMIZE DRAG ITEMS ---------------- */
+/* ---------- RANDOMIZE DRAG ITEMS ---------- */
 const dragBank = document.getElementById("dragBank");
-const items = Array.from(dragBank.children);
+Array.from(dragBank.children)
+  .sort(() => Math.random() - 0.5)
+  .forEach(item => dragBank.appendChild(item));
 
-items.sort(() => Math.random() - 0.5);
-items.forEach(item => dragBank.appendChild(item));
-
-/* ---------------- DRAG & DROP ---------------- */
+/* ---------- DRAG & DROP ---------- */
 let draggedItem = null;
 
 document.querySelectorAll('.drag-item').forEach(item => {
@@ -208,26 +200,38 @@ document.querySelectorAll('.drop-zone').forEach(zone => {
   });
 });
 
-/* ---------------- CHECK ANSWERS ---------------- */
+/* ---------- FEEDBACK TEXT ---------- */
+const explanations = {
+  "senderreceiver": "In the transactional model, both participants send and receive messages at the same time rather than taking turns.",
+  "message": "Messages are the verbal and nonverbal information being exchanged, not reactions or distractions.",
+  "feedback": "Feedback includes verbal responses, nodding, tone changes, and facial expressions that show how messages are interpreted.",
+  "noise-external": "External noise comes from the environment, such as sounds, interruptions, or physical distractions.",
+  "noise-internal": "Internal noise involves thoughts, stress, emotions, or mental distractions affecting understanding.",
+  "noise-semantic": "Semantic noise occurs when a word or phrase is misunderstood due to different interpretations.",
+  "context": "Context includes the setting, roles, expectations, time pressure, and cultural or situational factors."
+};
+
+/* ---------- CHECK ANSWERS ---------- */
 function checkAnswers() {
   let score = 0;
 
   document.querySelectorAll('.drop-zone').forEach(zone => {
     const correct = zone.dataset.answer;
     const item = zone.querySelector('.drag-item');
+    const feedback = zone.querySelector('.feedback');
 
     if (item && item.id === correct) {
-      zone.classList.add('correct');
-      zone.classList.remove('incorrect');
+      zone.className = "drop-zone correct";
+      feedback.textContent = "Correct.";
       score++;
     } else {
-      zone.classList.add('incorrect');
-      zone.classList.remove('correct');
+      zone.className = "drop-zone incorrect";
+      feedback.textContent = explanations[correct];
     }
   });
 
   document.getElementById("result").textContent =
-    `Score: ${score}/7`;
+    `Score: ${score}/7 — Review the explanations above to improve understanding.`;
 }
 </script>
 
