@@ -2,121 +2,173 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Transactional Communication Tap-to-Drop</title>
+
+<!-- CRITICAL FOR IPHONE SCALING -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Transactional Communication Activity</title>
 
 <style>
 body {
   font-family: Arial, sans-serif;
   background: #f4f6fa;
-  padding: 20px;
+  padding: 16px;
 }
+
 .container {
   max-width: 900px;
   margin: auto;
   background: #ffffff;
-  padding: 25px;
+  padding: 20px;
   border-radius: 10px;
 }
-h2 { text-align: center; }
-.instructions { margin-bottom: 15px; }
+
 .scenario {
   background: #eef2f7;
-  padding: 20px;
+  padding: 18px;
   border-radius: 8px;
-  margin-bottom: 25px;
-  line-height: 1.6;
+  margin-bottom: 20px;
 }
+
 .drag-bank {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
+
 .drag-item {
-  padding: 10px 14px;
   background: #4a6fa5;
   color: #ffffff;
   border-radius: 6px;
+  padding: 12px 16px;
   cursor: pointer;
-  font-weight: bold;
-  text-align: center;
   user-select: none;
 }
+
 .drop-zones {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 15px;
 }
+
 .drop-zone {
   border: 2px dashed #999;
   border-radius: 8px;
-  padding: 12px;
-  min-height: 80px;
+  padding: 14px;
+  min-height: 90px;
   background: #f9f9f9;
 }
-.drop-zone strong { display: block; margin-bottom: 6px; }
-.feedback { margin-top: 6px; font-size: 0.9em; color: #444; }
+
+.feedback {
+  margin-top: 6px;
+}
+
 .correct { border-color: green; }
 .incorrect { border-color: red; }
-button { margin-top: 20px; padding: 10px 18px; font-size: 16px; }
-#result { margin-top: 15px; font-size: 18px; font-weight: bold; }
+
+button {
+  margin-top: 20px;
+  padding: 12px 18px;
+}
 </style>
 </head>
 
 <body>
+
 <div class="container">
-<h2>🔄 Transactional Communication: Tap-to-Drop</h2>
 
-<div class="instructions">
-<strong>Directions:</strong> Read the communication transaction below. Tap a label to select it, then tap the description it best represents.
-</div>
+  <h2>
+    <font size="5">🔄 Transactional Communication: Practice Activity</font>
+  </h2>
 
-<div class="scenario" id="scenarioText"></div>
+  <p>
+    <font size="4">
+      <strong>Directions:</strong> Read the communication transaction below.
+      Tap a label to select it, then tap the description it best represents.
+    </font>
+  </p>
 
-<div class="drag-bank" id="dragBank">
-  <div class="drag-item" id="senderreceiver">Simultaneous Sender & Receiver</div>
-  <div class="drag-item" id="message">Message</div>
-  <div class="drag-item" id="feedback">Feedback</div>
-  <div class="drag-item" id="noise-external">External Noise</div>
-  <div class="drag-item" id="noise-internal">Internal Noise</div>
-  <div class="drag-item" id="noise-semantic">Semantic Noise</div>
-  <div class="drag-item" id="context">Context</div>
-</div>
+  <div class="scenario">
+    <p>
+      <font size="4" id="scenarioText"></font>
+    </p>
+  </div>
 
-<div class="drop-zones">
-  <div class="drop-zone" data-answer="senderreceiver">
-    <strong>Both individuals communicating and reacting at the same time:</strong>
-    <div class="feedback"></div>
+  <!-- LABEL BANK -->
+  <div class="drag-bank" id="dragBank">
+    <div class="drag-item" id="senderreceiver">
+      <font size="4"><strong>Simultaneous Sender & Receiver</strong></font>
+    </div>
+    <div class="drag-item" id="message">
+      <font size="4"><strong>Message</strong></font>
+    </div>
+    <div class="drag-item" id="feedback">
+      <font size="4"><strong>Feedback</strong></font>
+    </div>
+    <div class="drag-item" id="noise-external">
+      <font size="4"><strong>External Noise</strong></font>
+    </div>
+    <div class="drag-item" id="noise-internal">
+      <font size="4"><strong>Internal Noise</strong></font>
+    </div>
+    <div class="drag-item" id="noise-semantic">
+      <font size="4"><strong>Semantic Noise</strong></font>
+    </div>
+    <div class="drag-item" id="context">
+      <font size="4"><strong>Context</strong></font>
+    </div>
   </div>
-  <div class="drop-zone" data-answer="message">
-    <strong>The spoken explanations and information exchanged:</strong>
-    <div class="feedback"></div>
-  </div>
-  <div class="drop-zone" data-answer="feedback">
-    <strong>Nonverbal and verbal responses during the interaction:</strong>
-    <div class="feedback"></div>
-  </div>
-  <div class="drop-zone" data-answer="noise-external">
-    <strong>Environmental distractions:</strong>
-    <div class="feedback"></div>
-  </div>
-  <div class="drop-zone" data-answer="noise-internal">
-    <strong>Thoughts, emotions, or mental interference:</strong>
-    <div class="feedback"></div>
-  </div>
-  <div class="drop-zone" data-answer="noise-semantic">
-    <strong>Misunderstanding the meaning of a word or phrase:</strong>
-    <div class="feedback"></div>
-  </div>
-  <div class="drop-zone" data-answer="context">
-    <strong>The situation, setting, and expectations influencing communication:</strong>
-    <div class="feedback"></div>
-  </div>
-</div>
 
-<button onclick="checkAnswers()">Check Answers</button>
-<div id="result"></div>
+  <!-- DROP ZONES -->
+  <div class="drop-zones">
+
+    <div class="drop-zone" data-answer="senderreceiver">
+      <strong><font size="4">Both individuals communicating and reacting at the same time:</font></strong>
+      <div class="feedback"><font size="3"></font></div>
+    </div>
+
+    <div class="drop-zone" data-answer="message">
+      <strong><font size="4">The spoken explanations and information exchanged:</font></strong>
+      <div class="feedback"><font size="3"></font></div>
+    </div>
+
+    <div class="drop-zone" data-answer="feedback">
+      <strong><font size="4">Nonverbal and verbal responses during the interaction:</font></strong>
+      <div class="feedback"><font size="3"></font></div>
+    </div>
+
+    <div class="drop-zone" data-answer="noise-external">
+      <strong><font size="4">Environmental distractions:</font></strong>
+      <div class="feedback"><font size="3"></font></div>
+    </div>
+
+    <div class="drop-zone" data-answer="noise-internal">
+      <strong><font size="4">Thoughts, emotions, or mental interference:</font></strong>
+      <div class="feedback"><font size="3"></font></div>
+    </div>
+
+    <div class="drop-zone" data-answer="noise-semantic">
+      <strong><font size="4">Misunderstanding the meaning of a word or phrase:</font></strong>
+      <div class="feedback"><font size="3"></font></div>
+    </div>
+
+    <div class="drop-zone" data-answer="context">
+      <strong><font size="4">The situation, setting, and expectations influencing communication:</font></strong>
+      <div class="feedback"><font size="3"></font></div>
+    </div>
+
+  </div>
+
+  <button onclick="checkAnswers()">
+    <font size="4"><strong>Check Answers</strong></font>
+  </button>
+
+  <p id="result">
+    <font size="4"></font>
+  </p>
+
 </div>
 
 <script>
@@ -124,83 +176,81 @@ button { margin-top: 20px; padding: 10px 18px; font-size: 16px; }
 const scenarios = [
 `During a busy lunch shift at a restaurant, a shift lead speaks with a server about a recent customer complaint.
 The shift lead explains that a customer felt ignored while waiting for service.
-The server listens while anxious about multiple tables.
+The server listens while feeling anxious about multiple tables.
 The server nods and responds by explaining the workload.
 Kitchen noise and nearby conversations continue.
-The server briefly misunderstands the phrase “table rotation.”
-Both individuals feel pressure from time and workplace expectations.`,
+The server misunderstands the phrase “table rotation.”
+Time pressure and workplace expectations shape the interaction.`,
 
-`During a group project meeting on Zoom, two students discuss how to divide responsibilities.
-One explains their idea while watching the chat and reacting to facial expressions.
+`During a Zoom group meeting, two students discuss dividing responsibilities.
+One explains ideas while monitoring the chat.
 The other responds verbally while taking notes.
-One student feels stressed due to another class.
-Poor internet connection causes audio cuts.
+Stress from another class distracts one student.
+Internet lag interrupts audio.
 The phrase “take the lead” is interpreted differently.
-Virtual setting, academic expectations, and deadlines influence the interaction.`,
+The virtual setting and academic expectations influence communication.`,
 
-`During a parent-teacher conference, a teacher discusses a student’s recent performance.
-The teacher explains assessment criteria while observing the parent’s reactions.
+`During a parent-teacher conference, a teacher discusses student performance.
+The teacher explains grading criteria while observing the parent’s reactions.
 The parent listens but feels defensive.
-The parent asks questions and nods during the explanation.
-A hallway announcement interrupts the conversation.
-The word “participation” causes confusion due to differing definitions.
-Formal school setting, roles, and emotional stakes shape the exchange.`
+They ask follow-up questions and nod.
+A hallway announcement interrupts the meeting.
+The term “participation” is misunderstood.
+The formal school context and emotional stakes shape the exchange.`
 ];
 
 document.getElementById("scenarioText").textContent =
   scenarios[Math.floor(Math.random() * scenarios.length)];
 
-/* ---------- RANDOMIZE DRAG ITEMS ---------- */
+/* ---------- RANDOMIZE LABELS ---------- */
 const dragBank = document.getElementById("dragBank");
 Array.from(dragBank.children)
   .sort(() => Math.random() - 0.5)
   .forEach(item => dragBank.appendChild(item));
 
-/* ---------- TAP-TO-DROP FUNCTIONALITY ---------- */
+/* ---------- TAP TO DROP ---------- */
 let selectedItem = null;
 
 document.querySelectorAll('.drag-item').forEach(item => {
   item.addEventListener('click', () => {
-    // toggle selection
-    if(selectedItem) selectedItem.style.border = "none";
+    if (selectedItem) selectedItem.style.outline = "none";
     selectedItem = item;
-    item.style.border = "3px solid yellow";
+    item.style.outline = "3px solid yellow";
   });
 });
 
 document.querySelectorAll('.drop-zone').forEach(zone => {
   zone.addEventListener('click', () => {
-    if(selectedItem) {
-      // remove previous if exists
-      let prev = zone.querySelector('.drag-item');
-      if(prev) dragBank.appendChild(prev);
+    if (selectedItem) {
+      let existing = zone.querySelector('.drag-item');
+      if (existing) dragBank.appendChild(existing);
       zone.appendChild(selectedItem);
-      selectedItem.style.border = "none";
+      selectedItem.style.outline = "none";
       selectedItem = null;
     }
   });
 });
 
-/* ---------- FEEDBACK EXPLANATIONS ---------- */
+/* ---------- FEEDBACK ---------- */
 const explanations = {
-  "senderreceiver": "In the transactional model, both participants send and receive messages simultaneously.",
-  "message": "Messages are the verbal and nonverbal information being exchanged.",
-  "feedback": "Feedback includes responses that indicate how messages are interpreted.",
+  senderreceiver: "Transactional communication means both people send and receive messages simultaneously.",
+  message: "The message is the information being communicated.",
+  feedback: "Feedback shows how messages are interpreted.",
   "noise-external": "External noise comes from environmental distractions.",
-  "noise-internal": "Internal noise involves thoughts, stress, or emotions affecting understanding.",
-  "noise-semantic": "Semantic noise occurs when words or phrases are interpreted differently.",
-  "context": "Context includes setting, roles, expectations, and situational factors."
+  "noise-internal": "Internal noise involves thoughts or emotions.",
+  "noise-semantic": "Semantic noise occurs when meanings differ.",
+  context: "Context includes setting, roles, expectations, and situation."
 };
 
-/* ---------- CHECK ANSWERS ---------- */
 function checkAnswers() {
   let score = 0;
+
   document.querySelectorAll('.drop-zone').forEach(zone => {
     const correct = zone.dataset.answer;
     const item = zone.querySelector('.drag-item');
-    const feedback = zone.querySelector('.feedback');
+    const feedback = zone.querySelector('.feedback').firstChild;
 
-    if(item && item.id === correct){
+    if (item && item.id === correct) {
       zone.className = "drop-zone correct";
       feedback.textContent = "Correct.";
       score++;
@@ -210,9 +260,10 @@ function checkAnswers() {
     }
   });
 
-  document.getElementById("result").textContent =
+  document.getElementById("result").firstChild.textContent =
     `Score: ${score}/7 — Review the explanations above to improve understanding.`;
 }
 </script>
+
 </body>
 </html>
